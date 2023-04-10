@@ -58,3 +58,16 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+// Displaying movements from accoun array
+const displayMovements = function (movements) {
+  movements.forEach(function (move, i) {
+    const typeOfMovement = move > 0 ? `deposit` : `withdrawal`;
+    const insertHTML =
+      `<div class="movements__row">
+        <div class="movements__type movements__type--${typeOfMovement}">${i + 1} ${typeOfMovement}</div>
+        <div class="movements__value">${move}</div>
+      </div>`;
+    containerMovements.insertAdjacentHTML('afterbegin', insertHTML);
+  });
+};
+displayMovements(account1.movements);
