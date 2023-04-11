@@ -73,6 +73,10 @@ const displayMovements = function (movements) {
 };
 displayMovements(account1.movements);
 
+// Function that counts acc balance
+const calculateDisplayBalance = movements => movements.reduce((accumulator, mov) => accumulator + mov, 0);
+labelBalance.textContent = `${calculateDisplayBalance(account1.movements)} CZK`;
+
 // Creating a function that creates usernames for each owner of the account
 const createUserName = function (accs) {
   accs.forEach(function (acc) {
