@@ -58,7 +58,7 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-// Displaying movements from accoun array
+// Displaying movements from account array
 const displayMovements = function (movements) {
   containerMovements.innerHTML = ''
   movements.forEach(function (move, i) {
@@ -72,3 +72,12 @@ const displayMovements = function (movements) {
   });
 };
 displayMovements(account1.movements);
+
+// Creating a function that creates usernames for each owner of the account
+const createUserName = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner.toLowerCase().split(' ').map(name => name[0]).join('');
+  })
+}
+createUserName(accounts);
+console.log(accounts)
