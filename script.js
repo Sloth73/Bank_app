@@ -108,4 +108,7 @@ btnLogin.addEventListener('click', function (event) {
   event.preventDefault();
   currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value)
   
+  if (currentAccount.pin === Number(inputLoginPin.value)) {
+    containerApp.style.opacity = 100;
+  }
 })
