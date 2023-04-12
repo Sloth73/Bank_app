@@ -99,3 +99,13 @@ const createUserName = function (accs) {
   })
 }
 createUserName(accounts);
+
+let currentAccount;
+
+// Login (form)
+btnLogin.addEventListener('click', function (event) {
+  // Preventing from default behavior - if form - automaticly refresh on click
+  event.preventDefault();
+  currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value)
+  
+})
