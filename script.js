@@ -66,7 +66,7 @@ const displayMovements = function (movements) {
     const insertHTML =
       `<div class="movements__row">
         <div class="movements__type movements__type--${typeOfMovement}">${i + 1} ${typeOfMovement}</div>
-        <div class="movements__value">${move}</div>
+        <div class="movements__value">${move} CZK</div>
       </div>`;
     containerMovements.insertAdjacentHTML('afterbegin', insertHTML);
   });
@@ -77,7 +77,14 @@ displayMovements(account1.movements);
 const calculateDisplayBalance = movements => movements.reduce((accumulator, mov) => accumulator + mov, 0);
 labelBalance.textContent = `${calculateDisplayBalance(account1.movements)} CZK`;
 
-// Creating a function that creates usernames for each owner of the account
+// Function that calculates and display acc summary
+const calculateDisplaySummary = function (movements) {
+  const incomes = movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes} CZK`
+}
+calculateDisplaySummary(account1.movements);
+
+// Function that creates usernames for each owner of the account
 const createUserName = function (accs) {
   accs.forEach(function (acc) {
     acc.username = acc.owner.toLowerCase().split(' ').map(name => name[0]).join('');
