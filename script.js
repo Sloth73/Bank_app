@@ -71,11 +71,14 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', insertHTML);
   });
 };
-displayMovements(account1.movements);
+
 
 // Function that counts acc balance
-const calculateDisplayBalance = movements => movements.reduce((accumulator, mov) => accumulator + mov, 0);
-labelBalance.textContent = `${calculateDisplayBalance(account1.movements)} CZK`;
+const calculateDisplayBalance = function (movements) {
+  const balance = movements.reduce((accumulator, mov) => accumulator + mov, 0);
+  labelBalance.textContent = balance + `CZK`;
+}
+
 
 // Function that calculates and display acc summary
 const calculateDisplaySummary = function (movements) {
@@ -90,7 +93,6 @@ const calculateDisplaySummary = function (movements) {
   const interest = incomes * account1.interestRate / 100;
   labelSumInterest.textContent = `${interest} CZK`
 }
-calculateDisplaySummary(account1.movements);
 
 // Function that creates usernames for each owner of the account
 const createUserName = function (accs) {
@@ -111,5 +113,12 @@ btnLogin.addEventListener('click', function (event) {
 
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     containerApp.style.opacity = 100;
+    
+    // Load movements
+    displayMovements(currentAccount.movements);
+    // Load balance
+    calculateDisplayBalance(currentAccount.movements);
+    // Load summary
+    calculateDisplaySummary(currentAccount.movements);
   }
 })
