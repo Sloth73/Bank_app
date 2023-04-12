@@ -81,16 +81,16 @@ const calculateDisplayBalance = function (movements) {
 
 
 // Function that calculates and display acc summary
-const calculateDisplaySummary = function (movements) {
-  const incomes = movements
+const calculateDisplaySummary = function (accs) {
+  const incomes = accs.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes} CZK`
-  const outcomes = movements
+  const outcomes = accs.movements
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(outcomes)} CZK`
-  const interest = incomes * account1.interestRate / 100;
+  const interest = incomes * accs.interestRate / 100;
   labelSumInterest.textContent = `${interest} CZK`
 }
 
@@ -119,6 +119,6 @@ btnLogin.addEventListener('click', function (event) {
     // Load balance
     calculateDisplayBalance(currentAccount.movements);
     // Load summary
-    calculateDisplaySummary(currentAccount.movements);
+    calculateDisplaySummary(currentAccount);
   }
 })
