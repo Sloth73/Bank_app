@@ -79,8 +79,14 @@ labelBalance.textContent = `${calculateDisplayBalance(account1.movements)} CZK`;
 
 // Function that calculates and display acc summary
 const calculateDisplaySummary = function (movements) {
-  const incomes = movements.filter(mov => mov > 0).reduce((acc, mov) => acc + mov, 0);
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes} CZK`
+  const outcomes = movements
+    .filter((mov) => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(outcomes)} CZK`
 }
 calculateDisplaySummary(account1.movements);
 
@@ -91,4 +97,3 @@ const createUserName = function (accs) {
   })
 }
 createUserName(accounts);
-console.log(accounts)
