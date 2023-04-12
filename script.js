@@ -76,7 +76,7 @@ const displayMovements = function (movements) {
 // Function that counts acc balance
 const calculateDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((accumulator, mov) => accumulator + mov, 0);
-  labelBalance.textContent = acc.balance + `CZK`;
+  labelBalance.textContent = `${acc.balance}CZK`;
 }
 
 
@@ -102,6 +102,15 @@ const createUserName = function (accs) {
 }
 createUserName(accounts);
 
+const updateUserInterface = function (acc) {
+  // Load movements
+  displayMovements(acc.movements);
+  // Load balance
+  calculateDisplayBalance(acc);
+  // Load summary
+  calculateDisplaySummary(acc);
+}
+
 let currentAccount;
 
 // Login (form)
@@ -116,22 +125,20 @@ btnLogin.addEventListener('click', function (event) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    // Load movements
-    displayMovements(currentAccount.movements);
-    // Load balance
-    calculateDisplayBalance(currentAccount);
-    // Load summary
-    calculateDisplaySummary(currentAccount);
+    updateUserInterface(currentAccount);
   }
-})
+});
 
 // Transfer money
 btnTransfer.addEventListener('click', function (event) {
   event.preventDefault();
   const amountOfMoney = Number(inputTransferAmount.value);
   const recieveAccount = accounts.find(acc => acc.username === inputTransferTo.value);
-  if (amountOfMoney > 0 && amountOfMoney >= currentAccount.balance && recieveAccount.username !== currentAccount.username && recieveAccount) {
+  console.log(amountOfMoney, recieveAccount)
+  if (amountOfMoney > 0 && currentAccount.balance >= amountOfMoney && recieveAccount.username !== currentAccount.username && recieveAccount) {
     currentAccount.movements.push(-amountOfMoney);
     recieveAccount.movements.push(amountOfMoney);
-  }
-})
+
+    updateUserInterface(currentAccount);
+   }
+});
