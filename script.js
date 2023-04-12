@@ -87,6 +87,8 @@ const calculateDisplaySummary = function (movements) {
     .filter((mov) => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(outcomes)} CZK`
+  const interest = incomes * account1.interestRate / 100;
+  labelSumInterest.textContent = `${interest} CZK`
 }
 calculateDisplaySummary(account1.movements);
 
