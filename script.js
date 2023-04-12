@@ -107,8 +107,8 @@ btnLogin.addEventListener('click', function (event) {
   // Preventing from default behavior - if form - automaticly refresh on click
   event.preventDefault();
   currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value)
-  
-  if (currentAccount.pin === Number(inputLoginPin.value)) {
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
     containerApp.style.opacity = 100;
   }
 })
