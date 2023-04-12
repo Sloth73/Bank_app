@@ -74,9 +74,9 @@ const displayMovements = function (movements) {
 
 
 // Function that counts acc balance
-const calculateDisplayBalance = function (movements) {
-  const balance = movements.reduce((accumulator, mov) => accumulator + mov, 0);
-  labelBalance.textContent = balance + `CZK`;
+const calculateDisplayBalance = function (acc) {
+  acc.balance = acc.movements.reduce((accumulator, mov) => accumulator + mov, 0);
+  labelBalance.textContent = acc.balance + `CZK`;
 }
 
 
@@ -109,16 +109,25 @@ btnLogin.addEventListener('click', function (event) {
   // Preventing from default behavior - if form - automaticly refresh on click
   event.preventDefault();
   currentAccount = accounts.find(acc => acc.username === inputLoginUsername.value)
-  labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`
-
+  
   if (currentAccount?.pin === Number(inputLoginPin.value)) {
     containerApp.style.opacity = 100;
-    
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
     // Load movements
     displayMovements(currentAccount.movements);
     // Load balance
-    calculateDisplayBalance(currentAccount.movements);
+    calculateDisplayBalance(currentAccount);
     // Load summary
     calculateDisplaySummary(currentAccount);
   }
+})
+
+// Transfer money
+btnTransfer.addEventListener('click', function (event) {
+  event.preventDefault();
+  const amountOfMoney = Number(inputTransferAmount.value);
+  const recieveAccount = accounts.find(acc => acc.username === inputTransferTo.value);
 })
