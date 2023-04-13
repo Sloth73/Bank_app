@@ -74,13 +74,11 @@ const displayMovements = function (movements, sort = false) {
   });
 };
 
-
 // Function that counts acc balance
 const calculateDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((accumulator, mov) => accumulator + mov, 0);
   labelBalance.textContent = `${acc.balance}CZK`;
 }
-
 
 // Function that calculates and display acc summary
 const calculateDisplaySummary = function (accs) {
@@ -165,5 +163,12 @@ btnClose.addEventListener('click', function (event) {
   inputCloseUsername.value = inputClosePin.value = "";
   containerApp.style.opacity = 0;
   labelWelcome.textContent = `Log in to get started`
-
 })
+
+let sorted = false;
+// Sorting button
+btnSort.addEventListener('click', function (event) {
+  event.preventDefault();
+  displayMovements(currentAccount.movements, !sorted);
+  sorted = !sorted;
+});
