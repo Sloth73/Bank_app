@@ -59,9 +59,11 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // Displaying movements from account array
-const displayMovements = function (movements) {
-  containerMovements.innerHTML = ''
-  movements.forEach(function (move, i) {
+const displayMovements = function (movements, sort = false) {
+  containerMovements.innerHTML = '';
+  const ifSortMov = sort ? movements.slice()/* slice - only because it crates shallow copy, sort mutate original array */.sort((a, b) => a - b) : movements;
+  // Array is sorted before it's putted into forEach method if sort arg. is true
+  ifSortMov.forEach(function (move, i) {
     const typeOfMovement = move > 0 ? `deposit` : `withdrawal`;
     const insertHTML =
       `<div class="movements__row">
