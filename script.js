@@ -134,7 +134,7 @@ btnTransfer.addEventListener('click', function (event) {
   event.preventDefault();
   const amountOfMoney = Number(inputTransferAmount.value);
   const recieveAccount = accounts.find(acc => acc.username === inputTransferTo.value);
-  console.log(amountOfMoney, recieveAccount)
+  inputTransferAmount.value = inputTransferTo.value = '';
   if (amountOfMoney > 0 && currentAccount.balance >= amountOfMoney && recieveAccount.username !== currentAccount.username && recieveAccount) {
     currentAccount.movements.push(-amountOfMoney);
     recieveAccount.movements.push(amountOfMoney);
@@ -142,3 +142,12 @@ btnTransfer.addEventListener('click', function (event) {
     updateUserInterface(currentAccount);
    }
 });
+
+// Closing account
+btnClose.addEventListener('click', function (event) {
+  event.preventDefault();
+  if (inputCloseUsername.value === currentAccount.username && Number(inputClosePin.value) === currentAccount.pin);
+  // Finding an index of current logged in user in acc array
+  const indexOfDeletingAcc = accounts.findIndex(acc => acc.username === currentAccount.username);
+  accounts.splice(indexOfDeletingAcc, 1);
+})
