@@ -150,4 +150,8 @@ btnClose.addEventListener('click', function (event) {
   // Finding an index of current logged in user in acc array
   const indexOfDeletingAcc = accounts.findIndex(acc => acc.username === currentAccount.username);
   accounts.splice(indexOfDeletingAcc, 1);
+  inputCloseUsername.value = inputClosePin.value = "";
+  containerApp.style.opacity = 0;
+
+
 })
