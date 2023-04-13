@@ -152,6 +152,6 @@ btnClose.addEventListener('click', function (event) {
   accounts.splice(indexOfDeletingAcc, 1);
   inputCloseUsername.value = inputClosePin.value = "";
   containerApp.style.opacity = 0;
-
+  labelWelcome.textContent = `Log in to get started`
 
 })
