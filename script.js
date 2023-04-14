@@ -172,3 +172,9 @@ btnSort.addEventListener('click', function (event) {
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
 });
+
+// Set time
+const todayDate = new Date();
+const dateArr = new Array(todayDate.getDate(), todayDate.getMonth(), todayDate.getFullYear());
+const hourArr = new Array(todayDate.getHours(), todayDate.getMinutes());
+labelDate.textContent = `${dateArr.join("/")}, ${hourArr.join(':')}`;
