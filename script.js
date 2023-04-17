@@ -199,8 +199,8 @@ btnTransfer.addEventListener('click', function (event) {
     currentAccount.movements.push(-amountOfMoney);
     recieveAccount.movements.push(amountOfMoney);
     // Date on money transfer
-    currentAccount.movementsDates.push(new Date());
-    recieveAccount.movementsDates.push(new Date());
+    currentAccount.movementsDates.push(new Date().toISOString());
+    recieveAccount.movementsDates.push(new Date().toISOString());
 
     updateUserInterface(currentAccount);
   }
@@ -214,7 +214,7 @@ btnLoan.addEventListener('click', function (event) {
     // Money transfer - movements array
     currentAccount.movements.push(amountOfLoanRequest);
     // Date on money transfer
-    currentAccount.movementsDates.push(new Date());
+    currentAccount.movementsDates.push(new Date().toISOString());
   }
   updateUserInterface(currentAccount);
 })
