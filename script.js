@@ -243,4 +243,4 @@ btnSort.addEventListener('click', function (event) {
 const todayDate = new Date();
 const dateArr = new Array(todayDate.getDate(), todayDate.getMonth(), todayDate.getFullYear());
 const hourArr = new Array(todayDate.getHours(), todayDate.getMinutes());
-labelDate.textContent = `${dateArr.join("/")}, ${hourArr.join(':')}`;
+labelDate.textContent = `${dateArr.join("/")}, ${hourArr.join(':')}`.padStart(2,0);
