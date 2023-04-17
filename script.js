@@ -72,9 +72,9 @@ const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
 // Displaying movements from account array
-const displayMovements = function (movements, sort = false) {
+const displayMovements = function (acc, sort = false) {
   containerMovements.innerHTML = '';
-  const ifSortMov = sort ? movements.slice()/* slice - only because it crates shallow copy, sort mutate original array */.sort((a, b) => a - b) : movements;
+  const ifSortMov = sort ? acc.movements.slice()/* slice - only because it crates shallow copy, sort mutate original array */.sort((a, b) => a - b) : acc.movements;
   // Array is sorted before it's putted into forEach method if sort arg. is true
   ifSortMov.forEach(function (move, i) {
     const typeOfMovement = move > 0 ? `deposit` : `withdrawal`;
@@ -117,7 +117,7 @@ createUserName(accounts);
 
 const updateUserInterface = function (acc) {
   // Load movements
-  displayMovements(acc.movements);
+  displayMovements(acc);
   // Load balance
   calculateDisplayBalance(acc);
   // Load summary
@@ -182,7 +182,7 @@ let sorted = false;
 // Sorting button
 btnSort.addEventListener('click', function (event) {
   event.preventDefault();
-  displayMovements(currentAccount.movements, !sorted);
+  displayMovements(currentAccount, !sorted);
   sorted = !sorted;
 });
 
