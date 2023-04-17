@@ -78,9 +78,18 @@ const displayMovements = function (acc, sort = false) {
   // Array is sorted before it's putted into forEach method if sort arg. is true
   ifSortMov.forEach(function (move, i) {
     const typeOfMovement = move > 0 ? `deposit` : `withdrawal`;
-    const insertHTML =
-      `<div class="movements__row">
-        <div class="movements__type movements__type--${typeOfMovement}">${i + 1} ${typeOfMovement}</div>
+    const date = new Date(acc.movementsDates[i]) //Looping through 2 arrays with same forEach method
+    const dateArr = new Array(
+      date.getDate(),
+      date.getMonth(),
+      date.getFullYear()
+    );
+    const displayMovementsDates = `${dateArr.join("/")}`;
+    const insertHTML = `<div class="movements__row">
+        <div class="movements__type movements__type--${typeOfMovement}">${
+      i + 1
+    } ${typeOfMovement}</div>
+        <div class="movements__date">${displayMovementsDates}</div>
         <div class="movements__value">${move} CZK</div>
       </div>`;
     containerMovements.insertAdjacentHTML('afterbegin', insertHTML);
