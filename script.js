@@ -170,6 +170,21 @@ const updateUserInterface = function (acc) {
   calculateDisplaySummary(acc);
 }
 
+const startLogoutTime = function () {
+  let remainingTime = 300
+  const timer = setInterval(function () {
+    const minutes = String(Math.trunc(remainingTime / 60)).padStart(2, 0);
+    const seconds = String(remainingTime % 60).padStart(2, 0);
+    labelTimer.textContent = `${minutes}:${seconds}`;
+    if (remainingTime === 0) {
+      clearInterval(timer);
+      containerApp.style.opacity = 0;
+      labelWelcome.textContent = 'Log in to get stareted'
+    }
+    remainingTime--;
+  }, 1000);
+};
+
 let currentAccount;
 
 // Login (form)
@@ -184,6 +199,7 @@ btnLogin.addEventListener('click', function (event) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
+    startLogoutTime();
     updateUserInterface(currentAccount);
   }
 });
