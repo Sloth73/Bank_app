@@ -9,17 +9,17 @@ const account1 = {
   pin: 1111,
 
   movementsDates: [
-    "2019-11-18T21:31:17.178Z",
-    "2019-12-23T07:42:02.383Z",
-    "2020-01-28T09:15:04.904Z",
-    "2020-04-01T10:17:24.185Z",
-    "2020-05-08T14:11:59.604Z",
-    "2020-05-27T17:01:17.194Z",
-    "2020-07-11T23:36:17.929Z",
-    "2020-07-12T10:51:36.790Z",
+    "2021-11-18T21:31:17.178Z",
+    "2022-12-23T07:42:02.383Z",
+    "2022-01-28T09:15:04.904Z",
+    "2022-04-01T10:17:24.185Z",
+    "2022-05-08T14:11:59.604Z",
+    "2023-03-27T17:01:17.194Z",
+    "2023-04-11T23:36:17.929Z",
+    "2023-04-12T10:51:36.790Z",
   ],
   currency: "CZK",
-  locale: "pt-PT", // de-DE
+  locale: "cs-CZ", 
 };
 
 const account2 = {
@@ -29,17 +29,17 @@ const account2 = {
   pin: 2222,
 
   movementsDates: [
-    "2019-11-18T21:31:17.178Z",
-    "2019-12-23T07:42:02.383Z",
-    "2020-01-28T09:15:04.904Z",
-    "2020-04-01T10:17:24.185Z",
-    "2020-05-08T14:11:59.604Z",
-    "2020-05-27T17:01:17.194Z",
-    "2020-07-11T23:36:17.929Z",
-    "2020-07-12T10:51:36.790Z",
+    "2021-11-18T21:31:17.178Z",
+    "2022-12-23T07:42:02.383Z",
+    "2022-01-28T09:15:04.904Z",
+    "2022-04-01T10:17:24.185Z",
+    "2022-05-08T14:11:59.604Z",
+    "2023-03-27T17:01:17.194Z",
+    "2023-04-11T23:36:17.929Z",
+    "2023-04-12T10:51:36.790Z",
   ],
   currency: "CZK",
-  locale: "pt-PT", // de-DE
+  locale: "cs-CZ",
 };
 
 const account3 = {
@@ -49,17 +49,17 @@ const account3 = {
   pin: 3333,
 
   movementsDates: [
-    "2019-11-18T21:31:17.178Z",
-    "2019-12-23T07:42:02.383Z",
-    "2020-01-28T09:15:04.904Z",
-    "2020-04-01T10:17:24.185Z",
-    "2020-05-08T14:11:59.604Z",
-    "2020-05-27T17:01:17.194Z",
-    "2020-07-11T23:36:17.929Z",
-    "2020-07-12T10:51:36.790Z",
+    "2021-11-18T21:31:17.178Z",
+    "2022-12-23T07:42:02.383Z",
+    "2022-01-28T09:15:04.904Z",
+    "2022-04-01T10:17:24.185Z",
+    "2022-05-08T14:11:59.604Z",
+    "2023-03-27T17:01:17.194Z",
+    "2023-04-11T23:36:17.929Z",
+    "2023-04-12T10:51:36.790Z",
   ],
   currency: "CZK",
-  locale: "pt-PT", // de-DE
+  locale: "cs-CZ",
 };
 
 const account4 = {
@@ -69,14 +69,14 @@ const account4 = {
   pin: 4444,
 
   movementsDates: [
-    "2020-04-01T10:17:24.185Z",
-    "2020-05-08T14:11:59.604Z",
-    "2020-05-27T17:01:17.194Z",
-    "2020-07-11T23:36:17.929Z",
-    "2020-07-12T10:51:36.790Z",
+    "2022-04-01T10:17:24.185Z",
+    "2022-05-08T14:11:59.604Z",
+    "2022-05-27T17:01:17.194Z",
+    "2023-04-11T23:36:17.929Z",
+    "2023-04-12T10:51:36.790Z",
   ],
   currency: "CZK",
-  locale: "pt-PT", // de-DE
+  locale: "cs-CZ",
 };
 
 const accounts = [account1, account2, account3, account4];
@@ -118,7 +118,7 @@ const displayMovements = function (acc, sort = false) {
     const date = new Date(acc.movementsDates[i]) //Looping through 2 arrays with same forEach method
     const dateArr = new Array(
       date.getDate(),
-      date.getMonth(),
+      date.getMonth() + 1, // +1 because months are 0 based ????
       date.getFullYear()
     );
     const displayMovementsDates = `${dateArr.join("/")}`;
@@ -240,7 +240,18 @@ btnSort.addEventListener('click', function (event) {
 });
 
 // Set time
-const todayDate = new Date();
-const dateArr = new Array(todayDate.getDate(), todayDate.getMonth(), todayDate.getFullYear());
-const hourArr = new Array(todayDate.getHours(), todayDate.getMinutes());
-labelDate.textContent = `${dateArr.join("/")}, ${hourArr.join(':')}`.padStart(2,0);
+  // Manually
+  const todayDate = new Date();
+  const dateArr = new Array(todayDate.getDate(), todayDate.getMonth(), todayDate.getFullYear());
+  const hourArr = new Array(todayDate.getHours(), todayDate.getMinutes());
+  // labelDate.textContent = `${dateArr.join("/")}, ${hourArr.join(':')}`.padStart(2,0);
+  // With API
+  const now = new Date();
+  const options = {
+    minute: "numeric",
+    hour: "numeric",
+    day: "numeric",
+    month: 'long',
+    year: 'numeric'
+};
+labelDate.textContent = new Intl.DateTimeFormat("cs-CZ", options).format(now);
