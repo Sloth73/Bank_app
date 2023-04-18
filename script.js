@@ -19,7 +19,7 @@ const account1 = {
     "2023-04-12T10:51:36.790Z",
   ],
   currency: "CZK",
-  locale: "cs-CZ", 
+   
 };
 
 const account2 = {
@@ -39,7 +39,7 @@ const account2 = {
     "2023-04-12T10:51:36.790Z",
   ],
   currency: "CZK",
-  locale: "cs-CZ",
+  
 };
 
 const account3 = {
@@ -59,7 +59,7 @@ const account3 = {
     "2023-04-12T10:51:36.790Z",
   ],
   currency: "CZK",
-  locale: "cs-CZ",
+  
 };
 
 const account4 = {
@@ -76,7 +76,7 @@ const account4 = {
     "2023-04-12T10:51:36.790Z",
   ],
   currency: "CZK",
-  locale: "cs-CZ",
+  
 };
 
 const accounts = [account1, account2, account3, account4];
@@ -210,14 +210,18 @@ btnTransfer.addEventListener('click', function (event) {
 btnLoan.addEventListener('click', function (event) {
   event.preventDefault();
   const amountOfLoanRequest = Number(inputLoanAmount.value);
-  if (amountOfLoanRequest > 0 && currentAccount.movements.some(movement => movement >= amountOfLoanRequest * 0.1)) {
-    // Money transfer - movements array
-    currentAccount.movements.push(amountOfLoanRequest);
-    // Date on money transfer
-    currentAccount.movementsDates.push(new Date().toISOString());
+  
+  if (amountOfLoanRequest > 0 && currentAccount.movements.some(movement => movement >= amountOfLoanRequest * 0.1)) { // at least one of the movements must be 10% of loan amount
+    setTimeout(function () {
+      // Money transfer - movements array
+      currentAccount.movements.push(amountOfLoanRequest);
+      // Date on money transfer
+      currentAccount.movementsDates.push(new Date().toISOString());
+      updateUserInterface(currentAccount);
+    }, 3000);
+    inputLoanAmount.value = "";
   }
-  updateUserInterface(currentAccount);
-})
+});
 
 // Closing account
 btnClose.addEventListener('click', function (event) {
