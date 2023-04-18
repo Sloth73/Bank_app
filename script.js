@@ -183,9 +183,10 @@ const startLogoutTime = function () {
     }
     remainingTime--;
   }, 1000);
+  return timer;
 };
 
-let currentAccount;
+let currentAccount, timer;
 
 // Login (form)
 btnLogin.addEventListener('click', function (event) {
@@ -199,7 +200,8 @@ btnLogin.addEventListener('click', function (event) {
     inputLoginUsername.value = inputLoginPin.value = '';
     inputLoginPin.blur();
 
-    startLogoutTime();
+    if (timer) clearInterval(timer);
+    timer = startLogoutTime();
     updateUserInterface(currentAccount);
   }
 });
