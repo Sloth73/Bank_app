@@ -219,8 +219,11 @@ btnTransfer.addEventListener('click', function (event) {
     // Date on money transfer
     currentAccount.movementsDates.push(new Date().toISOString());
     recieveAccount.movementsDates.push(new Date().toISOString());
-
+    // Upsade UI
     updateUserInterface(currentAccount);
+    // Reset timer
+    clearInterval(timer);
+    timer = startLogoutTime();
   }
 });
 
@@ -229,7 +232,8 @@ btnLoan.addEventListener('click', function (event) {
   event.preventDefault();
   const amountOfLoanRequest = Number(inputLoanAmount.value);
   
-  if (amountOfLoanRequest > 0 && currentAccount.movements.some(movement => movement >= amountOfLoanRequest * 0.1)) { // at least one of the movements must be 10% of loan amount
+  if (amountOfLoanRequest > 0 && currentAccount.movements.some(movement => movement >= amountOfLoanRequest * 0.1)) {
+    // at least one of the movements must be 10% of loan amount
     setTimeout(function () {
       // Money transfer - movements array
       currentAccount.movements.push(amountOfLoanRequest);
@@ -238,6 +242,9 @@ btnLoan.addEventListener('click', function (event) {
       updateUserInterface(currentAccount);
     }, 3000);
     inputLoanAmount.value = "";
+    // Reset timer
+    clearInterval(timer);
+    timer = startLogoutTime();
   }
 });
 
