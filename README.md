@@ -1,6 +1,6 @@
 # Bank_app
 
-K dispozici jsou 4 účty a 4 účty.
+K dispozici jsou 4 uživatelé a 4 účty.
 
 Každý z uživatelů se může přihlásit do své "internetové kanceláře za pomoci jména a hesla.
 
