@@ -14,10 +14,13 @@ Uživatelé:
   
 
 Uživatel č. 1:
-  Tomáš Pichl (username: tp ; PIN: 1111)
+  - Tomáš Pichl (username: tp ; PIN: 1111)
+  
 Uživatel č. 2:
-  Jessica Davis (username: jd ; PIN: 2222)
+  - Jessica Davis (username: jd ; PIN: 2222)
+  
 Uživatel č. 3:
-  Steven Thomas Williams (username: stw ; PIN: 3333)
+  - Steven Thomas Williams (username: stw ; PIN: 3333)
+  
 Uživatel č. 4:
-  Sarah Smith (username: ss ; PIN 4444)
+  - Sarah Smith (username: ss ; PIN 4444)
