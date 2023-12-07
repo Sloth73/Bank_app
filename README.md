@@ -24,3 +24,5 @@ Uživatel č. 3:
   
 Uživatel č. 4:
   - Sarah Smith (username: ss ; PIN 4444)
+
+Neodkazuje na žádný existující finanční produkt ani žádnou službu. Jedná se pouze o ukázku portfolia.
